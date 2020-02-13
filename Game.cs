@@ -4,23 +4,29 @@ namespace ConsoleGame
 {
     class Game : SuperGame
     {
-        public new static void UpdatePosition(string key1, out int x, out int y)
+        public new static void UpdatePosition(string key, out int xChange, out int yChange)
         {
-            switch (key1)
+            switch (key)
             {
                 case "LeftArrow":
-                    x--;
+                    xChange = -1;
+                    yChange = 0;
                     break;
                 case "RightArrow":
-                    x++;
+                    xChange = 1;
+                    yChange = 0;
                     break;
                 case "UpArrow":
-                    y--;
+                    yChange = -1;
+                    xChange = 0;
                     break;
                 case "DownArrow":
-                    y++;
+                    yChange = 1;
+                    xChange = 0;
                     break;
                 default:
+                    xChange = 0;
+                    yChange = 0;
                     break;
             }
         }
@@ -29,20 +35,15 @@ namespace ConsoleGame
             switch (input)
             {
                 case "LeftArrow":
-                    '<';
-                    break;
+                    return '<';
                 case "UpArrow":
-                    '^';
-                    break;
+                    return '^';
                 case "RightArrow":
-                    '>';
-                    break;
+                    return '>';
                 case "DownArrow":
-                    'v';
-                    break;
+                    return 'v';
                 default:
-                    break;
-
+                    return '<';
             }
         }
         public new static int KeepInBounds(int cood, int max)
@@ -62,7 +63,7 @@ namespace ConsoleGame
         }
         public new static bool DidScore(int xChar, int yChar, int xFruit, int yFruit)
         {
-            if (xChar && xFruit == yChar && yFruit)
+            if (xChar == xFruit && yChar == yFruit)
             {
                 return true;
             }
