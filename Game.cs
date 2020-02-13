@@ -47,7 +47,29 @@ namespace ConsoleGame
         }
         public new static int KeepInBounds(int cood, int max)
         {
-
+            if (cood < 0)
+            {
+                return 0;
+            }
+            else if (cood >= max)
+            {
+                return max - 1;
+            }
+            else
+            {
+                return cood;
+            }
+        }
+        public new static bool DidScore(int xChar, int yChar, int xFruit, int yFruit)
+        {
+            if (xChar && xFruit == yChar && yFruit)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
